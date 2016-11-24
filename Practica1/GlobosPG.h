@@ -5,7 +5,7 @@ class GlobosPG
 {
 private:
 	bool pinchado;
-	bool visible,deshinchado;
+	bool visible, deshinchado;
 	int puntos;
 	int x, y;
 	static const int AP = 5, DT = 5;
@@ -22,12 +22,12 @@ public:
 	int damePuntos();
 	int damePosX();
 	int damePosY();
-	void draw(SDL_Renderer* prenderer) ;				// : Si procede dibuja la textura.
+	void draw(SDL_Renderer* prenderer);				// : Si procede dibuja la textura.
 	bool onClick(int pmx, int pmy);				// : Si procede comprueba si ha sido dado.En caso positivo
-												//actualiza su estado y devuelve true.
+	//actualiza su estado y devuelve true.
 
 	bool update();							   // : Si procede actualiza su estado.Devuelve true si como resultado el globo
-											   //desaparece definitivamente(queda desinflado).
-	
+	//desaparece definitivamente(queda desinflado).
+
 };
 

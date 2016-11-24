@@ -1,6 +1,6 @@
+
 //David Pérez Cogolludo
-//Álvaro Rodríguez-Peral Bustos
-// mainHola.cpp
+//Álvaro Rodriguez Peral
 #include "juegoPG.h"
 #include "SDL_image.h"
 #include "SDL.h"  // Para utilizar SDL

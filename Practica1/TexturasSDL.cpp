@@ -9,7 +9,6 @@ using namespace std; // Para cualificar automaticamente con std:: los identifica
 TexturasSDL::TexturasSDL()
 {
 	pTexture = nullptr;
-	pSurface = nullptr;
 }
 
 
@@ -29,11 +28,11 @@ int TexturasSDL::getW(){
 bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 
 	bool success = true;  //Loading success flag
-	
+
 	//Load image
 	SDL_Surface* pSurface;
 	pSurface = IMG_Load(nombArch.c_str());  // si usamos string: bmpName.c_str() 
-	if (pSurface== nullptr) {
+	if (pSurface == nullptr) {
 		cout << "Unable to load image " << nombArch.c_str() << "! \nSDL Error: " << SDL_GetError() << '\n';
 		success = false;
 	}
@@ -46,14 +45,14 @@ bool TexturasSDL::load(SDL_Renderer* pRenderer, string const& nombArch){
 		w = pSurface->w;
 		h = pSurface->h;
 	}
-	
+
 	return success;
 }
 //-------------------------------------------------------------------------------------------------------
 void TexturasSDL::draw(SDL_Renderer* prenderer, SDL_Rect const& rect){
 	SDL_RenderCopy(prenderer, pTexture, nullptr, &rect);  // nullptr, nullptr -> toda la textura en toda la ventana
 }
- //-----------------------------------------------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------
 bool TexturasSDL::loadFromText(SDL_Renderer* pRenderer, const string text, SDL_Color color){
 	SDL_Surface* pSurface;
 	pSurface = font.textSolid(text, color);

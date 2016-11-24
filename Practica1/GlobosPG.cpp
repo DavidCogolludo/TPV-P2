@@ -41,7 +41,7 @@ int GlobosPG::damePosY(){
 //-----------------------------------------------------------------------------------------------------------------------------------
 void GlobosPG::draw(SDL_Renderer* prenderer){
 	//SDL_RenderCopy(pRender, pTextura, &fRect, &winRect);
-	if (visible && !pinchado) pTextura->draw(prenderer,rect);
+	if (visible && !pinchado) pTextura->draw(prenderer, rect);
 }
 //-------------------------------------------------------------------------------------------------------------------
 
@@ -59,7 +59,7 @@ bool GlobosPG::onClick(int pmx, int pmy){
 //--------------------------------------------------------------------------------------------------------------------------
 
 bool GlobosPG::update(){
-	if (rand() % 100 < PVIS) visible = true; 
+	if (rand() % 100 < PVIS) visible = true;
 	else visible = false;
 
 	if (rand() % 100 < PDES){

@@ -47,7 +47,7 @@ juegoPG::juegoPG()
 	for (unsigned int i = 0; i < vecGlobos.size(); i++){
 		//vecGlobos[i] = new GlobosPG(vecTexturas[1], rand() % (SCREEN_WIDTH - 25), rand() % (SCREEN_HEIGHT - 50));
 		//25 es la mitad de lo que ocupa la textura globo
-		vecGlobos[i] = new GlobosPG(vecTexturas[1], (SCREEN_WIDTH/2)-(25*i), (SCREEN_HEIGHT/2)-(25*i));
+		vecGlobos[i] = new GlobosPG(vecTexturas[1], (SCREEN_WIDTH / 2) - (25 * i), (SCREEN_HEIGHT / 2) - (25 * i));
 	}
 	//Cargamos la música y los Fx
 	sound = new Sound;
@@ -62,7 +62,7 @@ juegoPG::juegoPG()
 	pColor = nullptr;
 	error = exit = false;
 	gameOver = false;
-	
+
 
 }
 
@@ -73,19 +73,19 @@ juegoPG::~juegoPG()
 		delete vecGlobos[i];
 	for (unsigned int i = 0; i < vecTexturas.size(); i++)
 		delete vecTexturas[i];
-	
+
 	delete sound;
 	delete fuente;
 	vecGlobos.clear();
 	vecTexturas.clear();
-	closeSDL(pWin, pRender);
+	
 }
 //--------------------------------------------------------------------------------------------------------------------
 void juegoPG::run(){
 	if (!error) {
 		Uint32 msUpdate = 500;
 		Mix_PlayMusic(sound->pMusic, -1);
-		std:: cout << "PLAY \n";
+		std::cout << "PLAY \n";
 		Uint32 lastUpdate = SDL_GetTicks();
 		render();
 		handle_event();
@@ -103,18 +103,18 @@ void juegoPG::run(){
 		else {
 			string s = "Has obtenido " + to_string(contPuntos) + " puntos";
 			cout << s + "\n";
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SCORE", s.c_str() , nullptr);
+			SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "SCORE", s.c_str(), nullptr);
 		}
-		
+		closeSDL(pWin, pRender);
 		SDL_Delay(1000); //cin.get();
-		
+
 	}
 }
 //----------------------------------------------------------------------------------------------------------------------
 bool juegoPG::handle_event(){
 	if (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT){
-			onExit(); 
+			onExit();
 			return true;
 		}
 		else if (e.type == SDL_KEYUP){
@@ -129,7 +129,7 @@ bool juegoPG::handle_event(){
 			if (e.button.button == SDL_BUTTON_LEFT) {
 				//cout << "CLICK";
 				onClick(e.button.x, e.button.y);
-			}	
+			}
 		}
 	}
 	return false;
@@ -137,16 +137,16 @@ bool juegoPG::handle_event(){
 
 void juegoPG::onClick(int pmx, int pmy){
 	bool encontrado = false;
-	unsigned int it = vecGlobos.size()-1;
-	while (!encontrado && it >= 0){ 
+	unsigned int it = vecGlobos.size() - 1;
+	while (!encontrado && it >= 0){
 		encontrado = vecGlobos[it]->onClick(pmx, pmy);
 		it--;
 	}
 	if (encontrado){
 		Mix_PlayChannel(-1, sound->pFx, 0);
-		contPuntos += vecGlobos[it+1]->damePuntos();
+		contPuntos += vecGlobos[it + 1]->damePuntos();
 		//cout << contPuntos;
-		
+
 	}
 
 }
@@ -163,7 +163,7 @@ void juegoPG::update(){
 		gameOver = true;
 }
 //---------------------------------------------------------------------------------------------------------------------
-bool juegoPG:: initSDL (SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
+bool juegoPG::initSDL(SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 
 	bool success = true; //Initialization flag
 
@@ -198,7 +198,7 @@ bool juegoPG:: initSDL (SDL_Window* &pWindow, SDL_Renderer* &pRenderer) {
 }
 //-----------------------------------------------------------------------------------------------------------------
 
-void juegoPG:: closeSDL (SDL_Window* & pWindow, SDL_Renderer* & pRenderer) {
+void juegoPG::closeSDL(SDL_Window* & pWindow, SDL_Renderer* & pRenderer) {
 	Mix_FreeChunk(sound->pFx);
 	Mix_FreeMusic(sound->pMusic);
 
@@ -223,13 +223,13 @@ void juegoPG::render() const {
 	vecTexturas[0]->draw(pRender, fondo);
 	//SDL_RenderCopy(pRender, vecTexturas[0]->pTexture, nullptr, nullptr);
 	for (unsigned int i = 0; i < vecGlobos.size(); i++)
-	vecGlobos[i]->draw(pRender);
+		vecGlobos[i]->draw(pRender);
 
 	// Draw marcador
 	fuente->loadFromText(pRender, to_string(contPuntos), colorFuente);
 	fuente->draw(pRender, fuente->font.recFont);
 	//hacer for para cada globo
-	
+
 	//Show the window
 	SDL_RenderPresent(pRender);
 }
