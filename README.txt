@@ -1,4 +1,4 @@
-
+Hola, esto es una prueba.
 Al añadir un proyecto nuevo recuerda añadir la página de propiedades ProyectosSDL.props al nuevo proyecto:
 Menú VER -> administrador de propiedades -> Agregar hoja de propiedades existente -> ProyectosSDL.props > Guardar
 
